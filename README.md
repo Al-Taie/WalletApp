@@ -2,6 +2,8 @@
 
 A new Flutter project.
 
+![image](https://raw.githubusercontent.com/Al-Taie/WalletApp/master/img.jpg)
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.

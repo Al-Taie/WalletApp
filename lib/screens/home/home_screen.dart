@@ -143,111 +143,107 @@ class _HomeDefaultState extends State<HomeDefault> {
             color: const Color(0xffF8F9FD),
             child: Padding(
               padding: const EdgeInsets.only(left: 16.0, right: 16),
-              child: Column(
-                children: [
-                  Expanded(
-                    child: Container(
-                      color: const Color(0xffFDFDFE),
-                      child: Column(
+              child: Expanded(
+                child: Container(
+                  color: const Color(0xffFDFDFE),
+                  child: Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment:
+                        MainAxisAlignment.spaceBetween,
                         children: [
-                          Row(
-                            mainAxisAlignment:
-                            MainAxisAlignment.spaceBetween,
-                            children: [
-                              const Text(
-                                "TRANSACTIONS",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 19),
-                              ),
-                              TextButton(
-                                  onPressed: () => Get.to(() => const Transactions()),
-                                  child: const Text(
-                                    "Show all",
-                                    style: TextStyle(
-                                        color: Color(0xff934962),
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 16),
-                                  )
-                              )
-                            ],
+                          const Text(
+                            "TRANSACTIONS",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 19),
                           ),
-                          Expanded(
-                            child: ListView.builder(
-                              scrollDirection: Axis.vertical,
-                              itemCount: userProvider.data.length,
-                              itemBuilder: (context, index) =>
-                                  AnimationConfiguration.staggeredList(
-                                      position: index,
-                                      duration: const Duration(milliseconds: 300),
-                                      child: SlideAnimation(
-                                        child: FadeInAnimation(
-                                          duration: const Duration(milliseconds: 400),
-                                          child: Padding(
-                                            padding: const EdgeInsets.only(top: 8.0),
-                                            child: Row(
-                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                              children: [
-                                                Row(
-                                                  mainAxisAlignment: MainAxisAlignment.start,
-                                                  children: [
-                                                    Container(
-                                                      height: 48,
-                                                      width: 48,
-                                                      decoration: BoxDecoration(
-                                                        shape: BoxShape.circle,
-                                                          image: DecorationImage(
-                                                              fit: BoxFit.cover,
-                                                              image: NetworkImage(userProvider.data[index]['image'])
-                                                          )
-                                                      ),
-                                                    ),
-                                                    IconButton(
-                                                        onPressed: () => userProvider.removeElement(index),
-                                                        icon: const Icon(Icons.delete)
-                                                    ),
-                                                    Column(
-                                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                                      children: [
-                                                        Text(
-                                                          userProvider.data[index]['name'],
-                                                          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-                                                        ),
-                                                        Text(
-                                                          userProvider.data[index]['status'],
-                                                          style: const TextStyle(
-                                                              color: Color(0xffC0C5CA),
-                                                              fontWeight: FontWeight.bold,
-                                                              fontSize: 14),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ],
-                                                ),
-                                                Padding(
-                                                  padding: EdgeInsets.zero,
-                                                  child: Text(
-                                                    userProvider.data[index]['balance'],
-                                                    style: TextStyle(
-                                                        color: Color(userProvider.data[index]['color']),
-                                                        fontWeight: FontWeight.bold,
-                                                        fontSize: 18),
-                                                  ),
-                                                )
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-
-                                      )
-                                  ),
-                            ),
+                          TextButton(
+                              onPressed: () => Get.to(() => const Transactions()),
+                              child: const Text(
+                                "Show all",
+                                style: TextStyle(
+                                    color: Color(0xff934962),
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 16),
+                              )
                           )
                         ],
                       ),
-                    ),
-                  )
-                ],
+                      Expanded(
+                        child: ListView.builder(
+                          scrollDirection: Axis.vertical,
+                          itemCount: userProvider.data.length,
+                          itemBuilder: (context, index) =>
+                              AnimationConfiguration.staggeredList(
+                                  position: index,
+                                  duration: const Duration(milliseconds: 300),
+                                  child: SlideAnimation(
+                                    child: FadeInAnimation(
+                                      duration: const Duration(milliseconds: 400),
+                                      child: Padding(
+                                        padding: const EdgeInsets.only(top: 8.0),
+                                        child: Row(
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Row(
+                                              mainAxisAlignment: MainAxisAlignment.start,
+                                              children: [
+                                                Container(
+                                                  height: 48,
+                                                  width: 48,
+                                                  decoration: BoxDecoration(
+                                                    shape: BoxShape.circle,
+                                                      image: DecorationImage(
+                                                          fit: BoxFit.cover,
+                                                          image: NetworkImage(userProvider.data[index]['image'])
+                                                      )
+                                                  ),
+                                                ),
+                                                IconButton(
+                                                    onPressed: () => userProvider.removeElement(index),
+                                                    icon: const Icon(Icons.delete)
+                                                ),
+                                                Column(
+                                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                                  children: [
+                                                    Text(
+                                                      userProvider.data[index]['name'],
+                                                      style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                                                    ),
+                                                    Text(
+                                                      userProvider.data[index]['status'],
+                                                      style: const TextStyle(
+                                                          color: Color(0xffC0C5CA),
+                                                          fontWeight: FontWeight.bold,
+                                                          fontSize: 14),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ],
+                                            ),
+                                            Padding(
+                                              padding: EdgeInsets.zero,
+                                              child: Text(
+                                                userProvider.data[index]['balance'],
+                                                style: TextStyle(
+                                                    color: Color(userProvider.data[index]['color']),
+                                                    fontWeight: FontWeight.bold,
+                                                    fontSize: 18),
+                                              ),
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+
+                                  )
+                              ),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
               ),
             ),
           ),

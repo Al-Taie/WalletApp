@@ -50,7 +50,7 @@ class UserProvider extends ChangeNotifier{
       'status': 'Vise *** 3451',
       'balance': '-\$13.01',
       'color': 0xffA84867,
-      'image': '"https://cdn.dribbble.com/users/3281732/screenshots/6766582/samji_illusstrator_4x.jpeg?compress=1&resize=400x300"',
+      'image': "https://cdn.dribbble.com/users/3281732/screenshots/6766582/samji_illusstrator_4x.jpeg?compress=1&resize=400x300",
     },
   ];
 

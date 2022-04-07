@@ -1,4 +1,3 @@
-import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
 import 'line_chart.dart';
@@ -30,25 +29,47 @@ class _DashBoardState extends State<DashBoard> {
               padding: const EdgeInsets.all(16.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
-                    SizedBox(height: 32),
-                    Text(
-                        "Overview",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 16
-                      ),
+                  children: [
+                    const SizedBox(height: 32),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text(
+                                "Overview",
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 16
+                              ),
+                            ),
+                            const Text(
+                              "Dashboard",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 28,
+                                fontWeight: FontWeight.bold
+                              ),
+                            ),
+                          ],
+                        ),
+                        Container(
+                          height: 42,
+                          width: 42,
+                          decoration: BoxDecoration(
+                            border: Border.all(color: Colors.white, width: 2),
+                              shape: BoxShape.circle,
+                              image: const DecorationImage(
+                                  fit: BoxFit.cover,
+                                  image: NetworkImage("https://cdn.dribbble.com/users/3281732/screenshots/6766582/samji_illusstrator_4x.jpeg?compress=1&resize=200x100")
+                              )
+                          ),
+                        )
+                      ],
                     ),
-                    Text(
-                      "Dashboard",
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 28,
-                        fontWeight: FontWeight.bold
-                      ),
-                    ),
-                    SizedBox(height: 32),
-                    LineChartSample1()
+                    const SizedBox(height: 32),
+                    const LineChartDashboard()
                   ],
               ),
             ),

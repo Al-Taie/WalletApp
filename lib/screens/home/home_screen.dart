@@ -1,10 +1,9 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:second_app/providers/user_provider.dart';
+import 'package:second_app/screens/home/card_balance.dart';
 
 import '../transactions/transaction.dart';
 
@@ -33,11 +32,11 @@ class _HomeDefaultState extends State<HomeDefault> {
     return Column(
       children: [
         Container(
-          height: 300.0,
+          height: 340.0,
           width: screenWidth,
           color: const Color(0xff002047),
           child:
-          Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             Padding(
               padding: const EdgeInsets.only(left: 16, top: 48, right: 16),
               child: Row(
@@ -52,21 +51,21 @@ class _HomeDefaultState extends State<HomeDefault> {
                     child: Padding(
                       padding: const EdgeInsets.only(left: 8.0),
                       child: Row(
-                        children: const [
-                          Icon(
+                        children: [
+                          const Icon(
                             Icons.search,
                             color: Colors.grey,
                           ),
                           Expanded(
                               child: TextField(
-                                style: TextStyle(
-                                    color: Colors.grey,
-                                    fontWeight: FontWeight.bold),
-                                decoration: InputDecoration(
-                                  hintText: "Search",
-                                  border: InputBorder.none,
-                                ),
-                              )),
+                            style: const TextStyle(
+                                color: Colors.grey,
+                                fontWeight: FontWeight.bold),
+                            decoration: InputDecoration(
+                                hintText: "Search",
+                                border: InputBorder.none,
+                                hintStyle: TextStyle(color: Colors.grey[400])),
+                          )),
                         ],
                       ),
                     ),
@@ -76,15 +75,14 @@ class _HomeDefaultState extends State<HomeDefault> {
                     width: 44,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(50),
-                        image: DecorationImage(
-                            image: NetworkImage(avatarImage))),
+                        image:
+                            DecorationImage(image: NetworkImage(avatarImage))),
                   )
                 ],
               ),
             ),
             Padding(
-              padding:
-              const EdgeInsets.only(left: 16.0, top: 48, right: 16.0),
+              padding: const EdgeInsets.only(left: 16.0, top: 48, right: 16.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -97,9 +95,10 @@ class _HomeDefaultState extends State<HomeDefault> {
                   ),
                   IconButton(
                       onPressed: () => userProvider.addElement(),
-                      icon: const Icon(Icons.add, color: Colors.white,)
-                  )
-                  ,
+                      icon: const Icon(
+                        Icons.add,
+                        color: Colors.white,
+                      )),
                   const Text(
                     "\$385",
                     style: TextStyle(
@@ -119,21 +118,31 @@ class _HomeDefaultState extends State<HomeDefault> {
               ),
             ),
             Expanded(
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: 3,
-                itemBuilder: (context, index) =>
-                AnimationConfiguration.staggeredList(
-                    position: index,
-                    duration: const Duration(milliseconds: 150),
-                    child: SlideAnimation(
-                      child: FadeInAnimation(
-                        duration: const Duration(milliseconds: 100),
-                         child: myCard(index),
-                      ),
-                    )
-                )
-                ,
+              child: Padding(
+                padding: const EdgeInsets.only(top: 16, bottom: 16, left: 16),
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: 3,
+                  itemBuilder: (context, index) =>
+                      AnimationConfiguration.staggeredList(
+                          position: index,
+                          duration: const Duration(milliseconds: 150),
+                          child: SlideAnimation(
+                            child: FadeInAnimation(
+                              duration: const Duration(milliseconds: 100),
+                              child: Padding(
+                                padding: const EdgeInsets.only(right: 16, bottom: 8),
+                                child: CardBalance(
+                                  title: userProvider.cardData[index]['title'],
+                                  color: userProvider.cardData[index]['color'],
+                                  balance: userProvider.cardData[index]['balance'],
+                                  percent: userProvider.cardData[index]['percent'],
+
+                                ),
+                              ),
+                            ),
+                          )),
+                ),
               ),
             ),
           ]),
@@ -142,21 +151,20 @@ class _HomeDefaultState extends State<HomeDefault> {
           child: Container(
             color: const Color(0xffF8F9FD),
             child: Padding(
-              padding: const EdgeInsets.only(left: 16.0, right: 16),
+              padding: const EdgeInsets.only(left: 16.0, right: 16, top: 16),
               child: Expanded(
                 child: Container(
                   color: const Color(0xffFDFDFE),
                   child: Column(
                     children: [
                       Row(
-                        mainAxisAlignment:
-                        MainAxisAlignment.spaceBetween,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           const Text(
                             "TRANSACTIONS",
                             style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 19),
+                                fontWeight: FontWeight.bold, fontSize: 19
+                            ),
                           ),
                           TextButton(
                               onPressed: () => Get.to(() => const Transactions()),
@@ -166,8 +174,7 @@ class _HomeDefaultState extends State<HomeDefault> {
                                     color: Color(0xff934962),
                                     fontWeight: FontWeight.bold,
                                     fontSize: 16),
-                              )
-                          )
+                              ))
                         ],
                       ),
                       Expanded(
@@ -180,7 +187,8 @@ class _HomeDefaultState extends State<HomeDefault> {
                                   duration: const Duration(milliseconds: 300),
                                   child: SlideAnimation(
                                     child: FadeInAnimation(
-                                      duration: const Duration(milliseconds: 400),
+                                      duration:
+                                          const Duration(milliseconds: 400),
                                       child: Padding(
                                         padding: const EdgeInsets.only(top: 8.0),
                                         child: Row(
@@ -193,30 +201,30 @@ class _HomeDefaultState extends State<HomeDefault> {
                                                   height: 48,
                                                   width: 48,
                                                   decoration: BoxDecoration(
-                                                    shape: BoxShape.circle,
+                                                      shape: BoxShape.circle,
                                                       image: DecorationImage(
                                                           fit: BoxFit.cover,
-                                                          image: NetworkImage(userProvider.data[index]['image'])
-                                                      )
-                                                  ),
+                                                          image: NetworkImage(userProvider.data[index]['image']))),
                                                 ),
-                                                IconButton(
-                                                    onPressed: () => userProvider.removeElement(index),
-                                                    icon: const Icon(Icons.delete)
-                                                ),
+                                                IconButton(onPressed: () => userProvider.removeElement(index),
+                                                    icon: const Icon(Icons.delete)),
                                                 Column(
                                                   crossAxisAlignment: CrossAxisAlignment.start,
                                                   children: [
                                                     Text(
                                                       userProvider.data[index]['name'],
-                                                      style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                                                      style: const TextStyle(
+                                                          fontWeight: FontWeight.bold,
+                                                          fontSize: 16
+                                                      ),
                                                     ),
                                                     Text(
                                                       userProvider.data[index]['status'],
                                                       style: const TextStyle(
                                                           color: Color(0xffC0C5CA),
                                                           fontWeight: FontWeight.bold,
-                                                          fontSize: 14),
+                                                          fontSize: 14
+                                                      ),
                                                     ),
                                                   ],
                                                 ),
@@ -229,16 +237,15 @@ class _HomeDefaultState extends State<HomeDefault> {
                                                 style: TextStyle(
                                                     color: Color(userProvider.data[index]['color']),
                                                     fontWeight: FontWeight.bold,
-                                                    fontSize: 18),
+                                                    fontSize: 18
+                                                ),
                                               ),
                                             )
                                           ],
                                         ),
                                       ),
                                     ),
-
-                                  )
-                              ),
+                                  )),
                         ),
                       )
                     ],
@@ -251,75 +258,4 @@ class _HomeDefaultState extends State<HomeDefault> {
       ],
     );
   }
-}
-
-Widget myCard(int index) {
-  List<Map<String, dynamic>> data = [
-    {
-      'title': "Incomes",
-      'price': "\$348.02",
-      'value': "75",
-      'color': 0xffD3FF88
-    },
-    {
-      'title': "Expenses",
-      'price': "\$125.34",
-      'value': "65",
-      'color': 0xffE90346
-    },
-    {
-      'title': "Balance",
-      'price': "\$35.91",
-      'value': "40",
-      'color': 0xff6F73B4
-    }
-    ];
-
-  return Padding(
-      padding: const EdgeInsets.only(left: 16.0, top: 16, bottom: 16),
-      child: Container(
-          height: 72,
-          width: 148,
-          decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(8),
-              shape: BoxShape.rectangle),
-          child: Row(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 12.0, right: 8),
-                child: Stack(
-                  children: [
-                    Positioned(
-                      child: Text(
-                        data[index]['value'],
-                        style: const TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                      left: 10,
-                      top: 10,
-                    ),
-                    CircularProgressIndicator(
-                      value: double.parse(data[index]['value']) / 100,
-                      strokeWidth: 6,
-                      valueColor: AlwaysStoppedAnimation(Color(data[index]['color'])),
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 16.0, left: 8),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(data[index]['title'],
-                        style:
-                        const TextStyle(color: Color(0xff607192), fontSize: 12)),
-                    Text(data[index]['price'],
-                        style: const TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.bold))
-                  ],
-                ),
-              )
-            ],
-          )));
 }

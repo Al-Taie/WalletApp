@@ -2,6 +2,28 @@
 import 'package:flutter/cupertino.dart';
 
 class UserProvider extends ChangeNotifier{
+
+  List<Map<String, dynamic>> cardData = [
+    {
+      'title': "Incomes",
+      'balance': 348.02,
+      'percent': 75,
+      'color': const Color(0xff2dc253)
+    },
+    {
+      'title': "Expenses",
+      'balance': 125.34,
+      'percent': 65,
+      'color': const Color(0xffE90346)
+    },
+    {
+      'title': "Balance",
+      'balance': 35.91,
+      'percent': 40,
+      'color': const Color(0xff6F73B4)
+    }
+  ];
+
   List<Map<String, dynamic>> data = [
     {
       'name': 'Connor Davidson',

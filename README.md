@@ -1,6 +1,8 @@
-# second_app
+# Wallet App
 
 A new Flutter project.
+
+![image](https://raw.githubusercontent.com/Al-Taie/WalletApp/master/img.jpg)
 
 ## Getting Started
 

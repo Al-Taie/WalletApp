@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:second_app/providers/user_provider.dart';
+import 'package:second_app/screens/dashboard/dashboard.dart';
 import 'package:second_app/screens/intro/intro.dart';
 
 void main() {
@@ -27,7 +28,7 @@ class App extends StatelessWidget {
         title: 'Introduction screen',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(primarySwatch: Colors.indigo),
-        home: Intro(),
+        home: DashBoard(),
       ),
     );
   }

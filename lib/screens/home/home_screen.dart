@@ -183,7 +183,21 @@ class _HomeDefaultState extends State<HomeDefault> {
                           itemCount: userProvider.data.length,
                           itemBuilder: (context, index) =>
                               Dismissible(
-                                background: Container(color: Colors.redAccent,),
+                                background: Container(
+                                  color: Colors.redAccent,
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: const [
+                                      Padding(
+                                        padding: EdgeInsets.all(8.0),
+                                        child: Text("Remove", style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 12
+                                    ),),
+                                      ),
+                                    ]
+                                  )
+                                ),
                                 key: UniqueKey(),
                                 onDismissed: (direction) {
                                 // Remove the item from the data source.

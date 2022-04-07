@@ -87,8 +87,8 @@ class UserProvider extends ChangeNotifier{
     notifyListeners();
   }
 
-  void removeElement(value) {
-    data.removeAt(value);
+  void removeAt(int index) {
+    data.removeAt(index);
     notifyListeners();
   }
 }

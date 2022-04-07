@@ -182,70 +182,78 @@ class _HomeDefaultState extends State<HomeDefault> {
                           scrollDirection: Axis.vertical,
                           itemCount: userProvider.data.length,
                           itemBuilder: (context, index) =>
-                              AnimationConfiguration.staggeredList(
-                                  position: index,
-                                  duration: const Duration(milliseconds: 300),
-                                  child: SlideAnimation(
-                                    child: FadeInAnimation(
-                                      duration:
-                                          const Duration(milliseconds: 400),
-                                      child: Padding(
-                                        padding: const EdgeInsets.only(top: 8.0),
-                                        child: Row(
-                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Row(
-                                              mainAxisAlignment: MainAxisAlignment.start,
-                                              children: [
-                                                Container(
-                                                  height: 48,
-                                                  width: 48,
-                                                  decoration: BoxDecoration(
-                                                      shape: BoxShape.circle,
-                                                      image: DecorationImage(
-                                                          fit: BoxFit.cover,
-                                                          image: NetworkImage(userProvider.data[index]['image']))),
-                                                ),
-                                                IconButton(onPressed: () => userProvider.removeElement(index),
-                                                    icon: const Icon(Icons.delete)),
-                                                Column(
-                                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                                  children: [
-                                                    Text(
-                                                      userProvider.data[index]['name'],
-                                                      style: const TextStyle(
-                                                          fontWeight: FontWeight.bold,
-                                                          fontSize: 16
+                              Dismissible(
+                                background: Container(color: Colors.redAccent,),
+                                key: UniqueKey(),
+                                onDismissed: (direction) {
+                                // Remove the item from the data source.
+                                setState(() => userProvider.removeAt(index));
+                                ScaffoldMessenger.of(context)
+                                    .showSnackBar(const SnackBar(content: Text('Removed')));
+                                },
+                                child: AnimationConfiguration.staggeredList(
+                                    position: index,
+                                    duration: const Duration(milliseconds: 300),
+                                    child: SlideAnimation(
+                                      child: FadeInAnimation(
+                                        duration:
+                                            const Duration(milliseconds: 400),
+                                        child: Padding(
+                                          padding: const EdgeInsets.only(top: 8.0),
+                                          child: Row(
+                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Row(
+                                                mainAxisAlignment: MainAxisAlignment.start,
+                                                children: [
+                                                  Container(
+                                                    height: 48,
+                                                    width: 48,
+                                                    decoration: BoxDecoration(
+                                                        shape: BoxShape.circle,
+                                                        image: DecorationImage(
+                                                            fit: BoxFit.cover,
+                                                            image: NetworkImage(userProvider.data[index]['image']))),
+                                                  ),
+                                                  Column(
+                                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                                    children: [
+                                                      Text(
+                                                        userProvider.data[index]['name'],
+                                                        style: const TextStyle(
+                                                            fontWeight: FontWeight.bold,
+                                                            fontSize: 16
+                                                        ),
                                                       ),
-                                                    ),
-                                                    Text(
-                                                      userProvider.data[index]['status'],
-                                                      style: const TextStyle(
-                                                          color: Color(0xffC0C5CA),
-                                                          fontWeight: FontWeight.bold,
-                                                          fontSize: 14
+                                                      Text(
+                                                        userProvider.data[index]['status'],
+                                                        style: const TextStyle(
+                                                            color: Color(0xffC0C5CA),
+                                                            fontWeight: FontWeight.bold,
+                                                            fontSize: 14
+                                                        ),
                                                       ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ],
-                                            ),
-                                            Padding(
-                                              padding: EdgeInsets.zero,
-                                              child: Text(
-                                                userProvider.data[index]['balance'],
-                                                style: TextStyle(
-                                                    color: Color(userProvider.data[index]['color']),
-                                                    fontWeight: FontWeight.bold,
-                                                    fontSize: 18
-                                                ),
+                                                    ],
+                                                  ),
+                                                ],
                                               ),
-                                            )
-                                          ],
+                                              Padding(
+                                                padding: EdgeInsets.zero,
+                                                child: Text(
+                                                  userProvider.data[index]['balance'],
+                                                  style: TextStyle(
+                                                      color: Color(userProvider.data[index]['color']),
+                                                      fontWeight: FontWeight.bold,
+                                                      fontSize: 18
+                                                  ),
+                                                ),
+                                              )
+                                            ],
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                  )),
+                                    )),
+                              ),
                         ),
                       )
                     ],
